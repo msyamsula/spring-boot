@@ -1,0 +1,14 @@
+package com.springdemo;
+
+public class HappyFortuneService implements FortuneService {
+	
+	private String arr[] = {"Today is your lucky day", "I'm not so lucky today", "Today is a bad day"};
+
+	@Override
+	public String getFortune() {
+		long num = (long)(Math.random()*4);
+		System.out.println(num);
+		return arr[(int)num];
+	}
+
+}

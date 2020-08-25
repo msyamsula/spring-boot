@@ -1,0 +1,11 @@
+package com.spring.annotations;
+
+public class BasketCoach implements Coach {
+
+	@Override
+	public String getDailyWorkOut() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

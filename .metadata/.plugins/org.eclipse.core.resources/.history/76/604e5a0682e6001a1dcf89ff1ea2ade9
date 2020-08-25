@@ -1,0 +1,73 @@
+package com.spring.annotations;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+// @Component = annotation to register TennisCoach class to spring container with beanId = tennisCoach
+@Component()
+public class TennisCoach implements Coach {
+	
+	
+	// inject value from file that has been loaded from spring config file with @Value annotations
+	@Value("${foo.team}")
+	private String team;
+	
+	@Value("${foo.email}")
+	private String email;
+	
+	private FortuneService FortuneService;
+	
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public FortuneService getFortuneService() {
+		return FortuneService;
+	}
+	
+	// inject fortune spring to setter method
+	@Autowired()
+	@Qualifier("happyFortuneService")
+	public void setFortuneService(FortuneService FortuneService) {
+		this.FortuneService = FortuneService;
+	}
+
+
+
+	// constructor
+	@Autowired()
+	public TennisCoach() {
+		super();
+		System.out.println(this.getEmail());
+		System.out.println(this.getTeam());
+	}
+	
+
+
+	@Override()
+	public String getDailyWorkOut() {
+		return "Practice your backhand volley";
+	}
+	
+	
+	public String getDailyFortune() {
+		return FortuneService.getFortuneService();
+	}
+	
+	
+
+}

@@ -1,0 +1,15 @@
+package com.spring.annotations;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class mainAnnotations {
+
+	public static void main(String[] args) {
+		
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("./SpringAnnotaions.xml");
+		
+		Coach myCoach = context.getBean("TennisCoach", Coach.class);
+
+	}
+
+}

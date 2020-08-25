@@ -1,0 +1,18 @@
+package com.spring.annotations;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class mainBeanScopeAnnotations {
+
+	public static void main(String[] args) {
+		// load spring config to context
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("./SpringAnnotations.xml");
+		
+		TennisCoach coach = context.getBean("tennisCoach", TennisCoach.class);
+		
+		System.out.println(coach.getDailyWorkOut());
+		
+		context.close();
+	}
+
+}

@@ -1,0 +1,29 @@
+package com.spring.java;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.spring.annotations.BasketCoach;
+import com.spring.annotations.TennisCoach;
+
+public class mainSpringJava {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Hello world");
+		// load config file to context
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SportConfig.class);
+//		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("./SpringAnnotations.xml");
+		
+		TennisCoach myCoach = context.getBean("tennisCoach", TennisCoach.class);
+		BasketCoach coach = context.getBean("basketCoach", BasketCoach.class);
+		
+		System.out.println(myCoach.getDailyWorkOut());
+		System.out.println(myCoach.getDailyFortune());
+		System.out.println(myCoach.getTeam());
+		System.out.println(myCoach.getEmail());
+		System.out.println(coach.getFortuneService());
+		
+		context.close();
+	}
+
+}

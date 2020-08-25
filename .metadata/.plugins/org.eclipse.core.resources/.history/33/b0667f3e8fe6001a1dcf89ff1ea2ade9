@@ -1,0 +1,28 @@
+package com.spring.java;
+
+import com.spring.annotations.FortuneService;
+import com.springdemo.Coach;
+
+public class SwimCoach implements Coach {
+	
+	private FortuneService fortuneService;
+	
+	//constructor
+	public SwimCoach(FortuneService fs) {
+		super();
+		this.fortuneService = fs;
+	}
+
+	@Override
+	public String getDailyWorkOut() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

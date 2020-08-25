@@ -1,0 +1,34 @@
+package com.spring.annotations;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+// @Component = annotation to register TennisCoach class to spring container with beanId = tennisCoach
+@Component()
+public class TennisCoach implements Coach {
+	
+	private FortuneService fortuneService;
+	
+	
+	// constructor
+	/*
+	@Autowired()
+	public TennisCoach(FortuneService fortuneService) {
+		super();
+		this.fortuneService = fortuneService;
+	}
+	*/
+
+
+
+	@Override()
+	public String getDailyWorkOut() {
+		return "Practice your backhand volley";
+	}
+	
+	@Autowired()
+	public String getDailyFortune(FortuneService fortuneService) {
+		return fortuneService.getFortuneService();
+	}
+
+}

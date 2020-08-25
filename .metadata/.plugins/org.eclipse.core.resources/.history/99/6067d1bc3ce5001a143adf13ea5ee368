@@ -1,0 +1,27 @@
+package com.springdemo;
+
+public class CricketCoach implements Coach {
+	
+
+	// private field
+	private FortuneService fortuneService;
+	
+	// constructor
+	public CricketCoach() {
+		System.out.println("Constructor for cricket coach");
+	}
+	
+	
+	@Override
+	public String getDailyWorkOut() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

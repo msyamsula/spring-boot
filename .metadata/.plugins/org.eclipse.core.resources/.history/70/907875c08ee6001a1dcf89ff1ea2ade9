@@ -1,0 +1,13 @@
+package com.spring.java;
+
+import com.spring.annotations.Coach;
+
+public class SwimCoach implements Coach {
+
+	@Override
+	public String getDailyWorkOut() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
