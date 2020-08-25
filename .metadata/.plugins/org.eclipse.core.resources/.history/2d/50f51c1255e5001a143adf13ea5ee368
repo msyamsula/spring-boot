@@ -1,5 +1,0 @@
-package com.spring.annotations.Interfaces;
-
-public interface Coach {
-	public String getDailyWorkOut();
-}
