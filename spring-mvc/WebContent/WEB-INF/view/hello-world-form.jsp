@@ -6,8 +6,9 @@
     <title>Spring MVC</title>
   </head>
   <body>
-    <h1>Hello World, from spring mvc 2</h1>
-    <a href="showForm">go to form</a> <br>
-    <a href="student/showForm">go to student form</a>
+    <form method="GET" action="hellowWorldVersionTwo">
+    	<input type="text" placeholder="type your name here" name="name">
+    	<button>Submit</button>
+    </form>
   </body>
 </html>

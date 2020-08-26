@@ -3,11 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spring MVC</title>
+    <title>Student Registration Form</title>
   </head>
   <body>
-    <h1>Hello World, from spring mvc 2</h1>
-    <a href="showForm">go to form</a> <br>
-    <a href="student/showForm">go to student form</a>
+    The student is confirmed : ${student.lastName}, ${student.firstName}
   </body>
 </html>
