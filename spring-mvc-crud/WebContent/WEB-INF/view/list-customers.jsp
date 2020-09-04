@@ -15,6 +15,9 @@
 		</div>
 	</div>
 	
+	<!-- add button -->
+	<input type="button" value="Add Customer" onclick="window.location.href='showAddForm'; return false;" class="add-button"/>
+	
 	<div id="container">
 		<div id="content">
 			<table>
@@ -22,14 +25,23 @@
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
+					<th>Action</th>
 				</tr>
+				
+				
 				
 				<!-- loop in customers -->
 				<c:forEach var="tempCustomer" items="${customers}">
 					<tr>
-						<td>${ tempCustomer.first_name }</td>
-						<td>${ tempCustomer.last_name }</td>
+						<td>${ tempCustomer.firstName }</td>
+						<td>${ tempCustomer.lastName }</td>
 						<td>${ tempCustomer.email }</td>
+						<td>
+							<a href="/spring-mvc-crud/customers/update?customerId=${tempCustomer.id}">Update</a>
+							|
+							<a href="/spring-mvc-crud/customers/delete/${tempCustomer.id}"
+							onclick = "if(!(confirm('are you sure?'))) return false" >Delete</a>
+						</td>
 					</tr>
 				
 				</c:forEach>
