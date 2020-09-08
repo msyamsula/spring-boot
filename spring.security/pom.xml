@@ -140,7 +140,7 @@
 		<plugins>
 
 			<!-- Builds a Web Application Archive (WAR) file from the project output and its dependencies. -->
-			<!-- add this plugin if you want to make use java code for web -->
+			<!-- add this plugin if you want to make use java code for spring config -->
 			<plugin>
 				<!-- Add Maven coordinates (GAV) for: maven-war-plugin -->
 				<groupId>org.apache.maven.plugins</groupId>
