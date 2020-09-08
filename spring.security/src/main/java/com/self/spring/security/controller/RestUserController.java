@@ -33,7 +33,7 @@ public class RestUserController {
 	
 	@GetMapping("/id/{id}")
 	public User getById(@PathVariable Integer id) {
-		return userService.getById(id); 
+		return userService.getById(id);
 	}
 	
 	@GetMapping("/name/{name}")

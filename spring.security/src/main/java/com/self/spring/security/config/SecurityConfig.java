@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/").hasAnyRole("MANAGER", "EMPLOYEE", "GUESS") // give acess for viewer
 			.antMatchers("/leaders/**").hasRole("MANAGER") // give access for creator
 			.antMatchers("/admins/**").hasAnyRole("EMPLOYEE", "MANAGER") // give access for buyer and creator
-			.antMatchers("/api/**").hasRole("MANAGER")
+			.antMatchers("/api/**").permitAll()
 		.and()
 			.formLogin().loginPage("/login").loginProcessingUrl("/user/login").permitAll() // login flow
 		.and()

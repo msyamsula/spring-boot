@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import com.self.spring.security.entity.Role;
 import com.self.spring.security.entity.User;
+import com.self.spring.security.exception.UserNotFound;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -53,15 +54,17 @@ public class UserServiceImpl implements UserService {
 		String queryString = String.format("from User u where u.id=%d", id);
 		Session session = sessionFactory.getCurrentSession();
 		
-		User user = session.createQuery(queryString, User.class).getSingleResult();
+		List<User> users = session.createQuery(queryString, User.class).getResultList();
 		
-		if (user == null) {
-			return null;
+		if (users.size() == 0) {
+			// if not found throw to UserException
+			String message = String.format("Customer id %d not found", id);				
+			throw new UserNotFound(message);
 		}
 		
 //		System.out.println(users);
 		
-		return user;
+		return users.get(0);
 	}
 	
 	@Override
@@ -78,7 +81,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 		
-		List<Role> roles = user.getRoles();
+//		List<Role> roles = user.getRoles();
 		
 //		for(Role role : roles) {
 //			System.out.println(role.getName());
