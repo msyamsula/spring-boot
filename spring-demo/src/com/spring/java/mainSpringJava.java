@@ -2,9 +2,6 @@ package com.spring.java;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.spring.annotations.BasketCoach;
-import com.spring.annotations.TennisCoach;
-
 public class mainSpringJava {
 
 	public static void main(String[] args) {

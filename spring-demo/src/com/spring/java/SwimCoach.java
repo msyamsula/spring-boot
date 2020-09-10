@@ -1,6 +1,5 @@
 package com.spring.java;
 
-import org.springframework.beans.factory.annotation.Value;
 
 import com.spring.annotations.FortuneService;
 import com.springdemo.Coach;
