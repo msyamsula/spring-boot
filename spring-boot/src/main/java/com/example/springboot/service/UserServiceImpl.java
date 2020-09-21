@@ -1,74 +1,115 @@
-// package com.example.springboot.service;
+package com.example.springboot.service;
 
-// import java.util.List;
+import java.util.List;
 
-// import javax.persistence.EntityManager;
-// import javax.transaction.Transactional;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
-// import com.example.springboot.entity.Role;
-// import com.example.springboot.entity.User;
+import com.example.springboot.dao.RoleDao;
+import com.example.springboot.dao.UserDao;
+import com.example.springboot.entity.Role;
+import com.example.springboot.entity.User;
 
-// import org.hibernate.Session;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Component;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-// @Component
-// public class UserServiceImpl implements UserService {
+@Component
+public class UserServiceImpl implements UserService {
 
-//     @Autowired
-//     private EntityManager theEntityManager;
+    // session and entity manager only used for hibernate query, if you use jpa repository then no need to use entity manager
+    @Autowired
+    private EntityManager theEntityManager;
 
-//     @Override
-//     @Transactional
-//     public List<User> findall() {
-//         Session session = theEntityManager.unwrap(Session.class);
+    @Autowired
+    private UserDao userDao;
 
-//         String hql = String.format("from User");
+    @Autowired 
+    private RoleDao roleDao;
 
-//         List<User> ans = session.createQuery(hql, User.class).getResultList();
 
-//         for(User u : ans){
-//             System.out.println(u.getName() + ":");
-//             for(Role r : u.getRoles()){
-//                 System.out.println(r.getName());
-//             }
-//         }
+    @Override
+    // @Transactional // --> no need transactional if you use jpa repository
+    public List<User> findall() {
+        /**
+         * this section is using session and hibernate query
+         */
+        // Session session = theEntityManager.unwrap(Session.class);
 
-//         return ans;
-//     }
+        // String hql = String.format("from User");
 
-//     @Override
-//     @Transactional
-//     public void postUser(User user) {
+        // List<User> ans = session.createQuery(hql, User.class).getResultList();
+
+        // for(User u : ans){
+        //     System.out.println(u.getName() + ":");
+        //     for(Role r : u.getRoles()){
+        //         System.out.println(r.getName());
+        //     }
+        // }
+        // return ans;
         
-//         Session session = theEntityManager.unwrap(Session.class);
-//         String hql = String.format("from Role r where r.name like '%s'", "%EMPLOYEE%");
+        /**
+         * this section is using jpa repository
+         */
+        return userDao.findAll();
+    }
 
-//         System.out.println(hql);
-//         Role role = session.createQuery(hql, Role.class).getSingleResult();
+    @Override
+    // @Transactional // --> no need transactional if you use jpa repository
+    public void postUser(User user) {
+        /**
+         * this section is using hibernate query
+         */
+        // Session session = theEntityManager.unwrap(Session.class);
+        // String hql = String.format("from Role r where r.name like '%s'", "%EMPLOYEE%");
 
-//         System.out.println(role);
+        // System.out.println(hql);
+        // Role role = session.createQuery(hql, Role.class).getSingleResult();
 
-//         System.out.println(role.getId());
-//         System.out.println(role.getName());
+        // System.out.println(role);
 
-//         user.addRole(role);
+        // System.out.println(role.getId());
+        // System.out.println(role.getName());
+
+        // user.addRole(role);
         
-//         session.save(user);
-//     }
+        // session.save(user);
 
-//     @Override
-//     @Transactional
-//     public List<User> getUserByRole(String role) {
-//         Session session = theEntityManager.unwrap(Session.class);
+        /**
+         * this section is using jpa repository
+         */
 
-//         role = "ROLE_" + role.toUpperCase();
+        Role role = roleDao.findById(1).get();
+        user.addRole(role);
+        userDao.saveAndFlush(user);
+    }
 
-//         String hql = String.format("from Role r where r.name = '%s'", role);
+    @Override
+    @Transactional // --> no need transactional if you use jpa repository
+    public List<User> getUserByRole(String role) {
+        /**
+         * this section is using hibernate query
+         */
+        Session session = theEntityManager.unwrap(Session.class);
 
-//         Role r = session.createQuery(hql, Role.class).getSingleResult();
+        role = "ROLE_" + role.toUpperCase();
 
-//         List<User> ans = r.getUsers();
-//         return ans;
-//     }
-// }
+        String hql = String.format("from Role r where r.name = '%s'", role);
+
+        Role r = session.createQuery(hql, Role.class).getSingleResult();
+
+        List<User> ans = r.getUsers();
+        return ans;
+    }
+
+    @Override
+    public User getById(Integer id) {
+        /**
+         * this use jpa repository, no need transactional
+         */
+        // System.out.println(id);
+        User ans = userDao.findById(id).get();
+        // System.out.println(ans);
+        return ans;
+    }
+}

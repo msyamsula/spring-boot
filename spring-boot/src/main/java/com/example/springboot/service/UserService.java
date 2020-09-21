@@ -1,13 +1,15 @@
-// package com.example.springboot.service;
+package com.example.springboot.service;
 
-// import java.util.List;
+import java.util.List;
 
-// import com.example.springboot.entity.User;
+import com.example.springboot.entity.User;
 
-// public interface UserService {
-//     public List<User> findall();
+public interface UserService {
+    public List<User> findall();
 
-// 	public void postUser(User user);
+	public void postUser(User user);
 
-// 	public List<User> getUserByRole(String role);
-// }
+	public List<User> getUserByRole(String role);
+
+	public User getById(Integer id);
+}
