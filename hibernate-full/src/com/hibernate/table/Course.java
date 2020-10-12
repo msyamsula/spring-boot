@@ -27,6 +27,7 @@ public class Course {
 	@Column(name = "title")
 	private String title;
 	
+	// foreign key
 	@Column(name = "instructor_id", insertable = false, updatable = false)
 	private Integer instructor_id;
 	
